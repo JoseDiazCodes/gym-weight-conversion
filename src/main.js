@@ -37,6 +37,9 @@ convertBtn.addEventListener("click", () => {
 		2.204
 	)
 
+	// clear the input field
+	inputField.value = ""
+
 	console.log(massFragment)
 	console.log(lengthFragment)
 	console.log(lengthFragment)
