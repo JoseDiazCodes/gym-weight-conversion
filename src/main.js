@@ -1,24 +1,58 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const inputField = document.getElementById("unit-om")
+const convertBtn = document.getElementById("convert-btn")
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+function createConversionFragment(value, fromUnit, toUnit, rate) {
+	const fragment = document.createDocumentFragment()
+	const p = document.createElement("p")
 
-setupCounter(document.querySelector('#counter'))
+	p.textContent = `${value} ${fromUnit} = ${(value * rate).toFixed(
+		3
+	)} | ${value} ${toUnit} = ${(value / rate).toFixed(3)}`
+
+	fragment.appendChild(p)
+	return fragment
+}
+
+convertBtn.addEventListener("click", () => {
+	console.log("Button clicked")
+	console.log("Input value:", inputField.value)
+	const inputValue = Number(inputField.value)
+
+	const lengthFragment = createConversionFragment(
+		inputValue,
+		"meters",
+		"feet",
+		3.281
+	)
+	const volumeFragment = createConversionFragment(
+		inputValue,
+		"liters",
+		"gallons",
+		0.264
+	)
+	const massFragment = createConversionFragment(
+		inputValue,
+		"kilos",
+		"pounds",
+		2.204
+	)
+
+	console.log(massFragment)
+	console.log(lengthFragment)
+	console.log(lengthFragment)
+
+	const fragments = [lengthFragment, volumeFragment, massFragment]
+
+	const containers = document.querySelectorAll(
+		".length-container, .volume-container, .mass-container"
+	)
+
+	containers.forEach((elm, index) => {
+		elm.appendChild(fragments[index])
+	})
+})
+
+// conversions!
+// 1 meter = 3.281 feet
+// 1 liter = 0.264 gallon
+// 1 kilogram = 2.204 pound
