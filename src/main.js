@@ -48,6 +48,10 @@ convertBtn.addEventListener("click", () => {
 	)
 
 	containers.forEach((elm, index) => {
+		const existingParagrah = elm.querySelector("p")
+		if (existingParagrah) {
+			existingParagrah.remove()
+		}
 		elm.appendChild(fragments[index])
 	})
 })
