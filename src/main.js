@@ -14,8 +14,6 @@ function createConversionFragment(value, fromUnit, toUnit, rate) {
 }
 
 convertBtn.addEventListener("click", () => {
-	console.log("Button clicked")
-	console.log("Input value:", inputField.value)
 	const inputValue = Number(inputField.value)
 
 	const lengthFragment = createConversionFragment(
@@ -39,10 +37,6 @@ convertBtn.addEventListener("click", () => {
 
 	// clear the input field
 	inputField.value = ""
-
-	console.log(massFragment)
-	console.log(lengthFragment)
-	console.log(lengthFragment)
 
 	const fragments = [lengthFragment, volumeFragment, massFragment]
 
